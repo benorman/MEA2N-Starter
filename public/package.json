@@ -41,7 +41,8 @@
     "protractor": "~4.0.13",
     "ts-node": "1.2.1",
     "tslint": "^4.3.0",
-    "typescript": "~2.0.3"
+    "typescript": "~2.0.3",
+    "extract-text-webpack-plugin": "2.0.0-rc.0"
   },
   "devDependencies": {
   }
