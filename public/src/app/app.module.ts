@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { routing, appRoutingProviders } from './app.routing'
+
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component'
-import { RacelogComponent } from './racelog/racelog.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component'
+import { RacelogComponent } from './components/racelog/racelog.component'
 
 @NgModule({
   declarations: [
@@ -17,9 +19,12 @@ import { RacelogComponent } from './racelog/racelog.component'
     BrowserModule,
     FormsModule,
     HttpModule,
+      routing
   
   ],
-  providers: [],
+  providers: [
+      appRoutingProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
