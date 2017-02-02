@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
 
 
 export class RacelogComponent {
-    title = 'racelocal2017 racelog!';
+    title = 'racelocal2017 racelog!'
+    dates = 'January 28th'
+    racetitle = 'Polar Bear Challenge'
 }
