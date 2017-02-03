@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from '../../services/auth.service';
 
 @Component({
     selector: 'racelog',
@@ -8,7 +9,11 @@ import { Component } from '@angular/core';
 
 
 export class RacelogComponent {
+    constructor(private auth:Auth){
+
+    }
     title = 'racelocal2017 racelog!'
     dates = 'January 28th'
     racetitle = 'Polar Bear Challenge'
+    
 }

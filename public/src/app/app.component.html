@@ -3,6 +3,11 @@
     <div class="navbar-header">
 
       <a class="navbar-brand" href="#">#racelocal2017</a>
+      <ul class="nav navbar-nav navbar-right pull-right">
+        <li role="presentation"><a href="/profile" *ngIf="auth.authenticated()">Profile</a></li>
+
+      </ul>
+
 
 
     </div><!--/.nav-collapse -->
@@ -10,8 +15,10 @@
 </nav>
 <div>
 <ul class="nav nav-pills">
-  <li role="presentation"><a routerLink="/">Dashboard</a></li>
-  <li role="presentation"><a routerLink="/racelog">Race Logging</a></li>
+  <li role="presentation"><a href="#" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In!</a></li>
+  <li role="presentation"><a href="#" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out!</a></li>
+  <li role="presentation"><a routerLink="/dashboard" *ngIf="auth.authenticated()">Dashboard</a></li>
+  <li role="presentation"><a routerLink="/racelog" *ngIf="auth.authenticated()">Race Logging</a></li>
 
 </ul>
 </div>
