@@ -1,0 +1,17 @@
+.welcomepage {
+    width: 100%;
+    background-color: black;
+    margin-left: 1em;
+}
+
+.racelocallogo {
+    width: 75%;
+    margin-left:13%;
+    max-height: 50%;
+}
+
+.loginbutton {
+
+    width: 50%;
+    margin-left: 25%;
+}

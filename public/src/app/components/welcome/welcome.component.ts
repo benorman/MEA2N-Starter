@@ -12,6 +12,6 @@ export class WelcomeComponent {
     constructor(private auth:Auth){
 
     }
-    title = 'Welcome'
+    title = 'Welcome Champion...'
 
 }

@@ -2,6 +2,7 @@
 
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Router } from '@angular/router';
 
 // Avoid name not found warnings
 declare var Auth0Lock: any;
@@ -11,7 +12,7 @@ export class Auth {
     // Configure Auth0
     lock = new Auth0Lock('Ee0ZLEQBzzLyWHzffsAbKr2ggc9d8wa7', 'bnorman.auth0.com', {});
 
-    constructor() {
+    constructor(private router: Router) {
         // Add callback for lock `authenticated` event
         this.lock.on("authenticated", (authResult) => {
 
@@ -23,6 +24,7 @@ export class Auth {
                 localStorage.setItem('id_token', authResult.idToken);
                 localStorage.setItem('profile', JSON.stringify(profile));
                 console.log(profile);
+                router.navigate(['/dashboard']);
             });
 
 
