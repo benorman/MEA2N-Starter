@@ -15,6 +15,7 @@ export class Races{
     RelayRaceRacers: number;
     image: string;
     website: string;
+    active: boolean;
 
 
 }

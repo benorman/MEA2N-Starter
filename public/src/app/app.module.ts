@@ -11,6 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { RacelogComponent } from './components/racelog/racelog.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { ProfileComponent } from './components/profile/profile.component'
+import { RaceVenueComponent } from './components/racevenue/racevenue.component'
 import { Auth } from './services/auth.service'
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Auth } from './services/auth.service'
       DashboardComponent,
       RacelogComponent,
       WelcomeComponent,
-      ProfileComponent
+      ProfileComponent,
+      RaceVenueComponent
   ],
   imports: [
     BrowserModule,
