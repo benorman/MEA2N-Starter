@@ -13,6 +13,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { RaceVenueComponent } from './components/racevenue/racevenue.component'
 import { Auth } from './services/auth.service'
+import { GetRaces } from './services/getraces.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { Auth } from './services/auth.service'
   providers: [
       appRoutingProviders,
       AUTH_PROVIDERS,
-      Auth
+      Auth, 
+      GetRaces
   ],
   bootstrap: [AppComponent]
 })

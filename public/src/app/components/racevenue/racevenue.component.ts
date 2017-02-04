@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Auth } from '../../services/auth.service';
 import { Races } from '../../model/races.model';
 
+import { GetRaces } from './services/getraces.service';
+
+
 @Component({
     selector: 'racevenue',
     templateUrl: './racevenue.component.html',
