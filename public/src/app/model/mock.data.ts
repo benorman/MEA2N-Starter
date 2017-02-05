@@ -28,6 +28,7 @@ export const RACES: Races [] =[{
     "address": "Shed Park/Fort Hill, Lowell MA",
     "milesPerLap": 3.2,
     "date": "Sunday, January 29th, 2017",
+    "eventType":"Obstacle Course Race",
     "hasCompetativeLap": false,
     "isNonOCREvent": false,
     "nonOCREvents":  false,
@@ -49,6 +50,7 @@ export const RACES: Races [] =[{
     "address": "Shale Hill Adventure Farms, 517 Lake Road. Benson, VT 05731",
     "milesPerLap": 6.0,
     "date": "Saturday, February 4th, 2017",
+    "eventType":"Obstacle Course Race",
     "hasCompetativeLap": true,
     "isNonOCREvent": false,
     "nonOCREvents":  false,
@@ -68,6 +70,7 @@ export const RACES: Races [] =[{
     "address": "Blueberry Hill Inn and Ski Center, 1245 Goshen Ripton Road. Goshen, VT 05733",
     "milesPerLap": 0,
     "date": "Saturday, February 25, 2017",
+    "eventType":"Endurance Race",
     "hasCompetativeLap": false,
     "isNonOCREvent": true,
     "nonOCREvents":  [{

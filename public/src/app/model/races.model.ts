@@ -7,6 +7,7 @@ export class Races{
     address: string;
     milesPerLap: number;
     date: string;
+    eventType: string;
     hasCompetativeLap: boolean;
     isNonOCREvent: boolean;
     nonOCREvents: any;

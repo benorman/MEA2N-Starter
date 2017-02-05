@@ -18,7 +18,9 @@ import { GetRaces } from '../../services/getraces.service';
 export class RaceVenueComponent implements OnInit {
 
    races : any[];
-
+    public width: number;
+    public height: number;
+    
     
     constructor(private raceService: GetRaces){
 
@@ -36,7 +38,7 @@ export class RaceVenueComponent implements OnInit {
         this.getRaces();
     }
 
-   
+
 
 
 }
