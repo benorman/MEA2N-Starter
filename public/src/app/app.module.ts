@@ -12,6 +12,8 @@ import { RacelogComponent } from './components/racelog/racelog.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { RaceVenueComponent } from './components/racevenue/racevenue.component'
+
+
 import { Auth } from './services/auth.service'
 import { GetRaces } from './services/getraces.service';
 
@@ -19,10 +21,11 @@ import { GetRaces } from './services/getraces.service';
   declarations: [
     AppComponent,
       DashboardComponent,
+      RaceVenueComponent,
       RacelogComponent,
       WelcomeComponent,
       ProfileComponent,
-      RaceVenueComponent
+      
   ],
   imports: [
     BrowserModule,

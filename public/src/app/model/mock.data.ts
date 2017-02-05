@@ -63,7 +63,7 @@ export const RACES: Races [] =[{
     "location": "43°53'26.5\"N 73°00'32.9\"W",
     "address": "Blueberry Hill Inn and Ski Center, 1245 Goshen Ripton Road. Goshen, VT 05733",
     "milesPerLap": 0,
-    "date": string,
+    "date": "Saturday, February 25, 2017",
     "hasCompetativeLap": false,
     "isNonOCREvent": true,
     "nonOCREvents":  [{

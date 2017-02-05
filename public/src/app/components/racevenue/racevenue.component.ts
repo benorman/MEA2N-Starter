@@ -1,36 +1,38 @@
 import { Component } from '@angular/core';
-import { Auth } from '../../services/auth.service';
-import { Races } from '../../model/races.model';
 
-import { GetRaces } from './services/getraces.service';
+import { Races } from '../../model/races.model';
+import { OnInit } from '@angular/core';
+
+import { GetRaces } from '../../services/getraces.service';
 
 
 @Component({
     selector: 'racevenue',
     templateUrl: './racevenue.component.html',
-    styleUrls: ['./racevenue.component.css']
+    styleUrls: ['./racevenue.component.css'],
+    providers: [GetRaces]
 })
 
 
-export class RaceVenueComponent {
-    constructor(private auth:Auth, private races: Races){
+export class RaceVenueComponent implements OnInit {
+
+   races : any[];
+
+    
+    constructor(private raceService: GetRaces){
+
+        this.raceService = raceService;
+
 
     }
 
-    ID = this.races.ID;
-    title = this.races.title;
-    location = this.races.location;
-    address = this.races.address;
-    milesPerLap = this.races.milesPerLap;
-    date = this.races.date;
-    hasCompetativeLap = this.races.hasCompetativeLap;
-    isNonOCREvent = this.races.isNonOCREvent;
-    nonOCREvents = this.races.nonOCREvents;
-    isMultiLapEvent = this.races.isMultiLapEvent;
-    isRelayRace = this.races.isRelayRace;
-    RelayRaceRacers = this.races.RelayRaceRacers;
-    image = this.races.image;
-    website = this.races.website;
-    active = this.races.active;
+    getRaces(): void {
+        this.races = this.raceService.getRaces();
+        console.log(this.races);
+    }
+
+    ngOnInit(): void {
+        this.getRaces();
+    }
 
 }
