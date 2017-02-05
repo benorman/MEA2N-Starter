@@ -1,7 +1,8 @@
 
 import { Injectable }      from '@angular/core';
 import { Router } from '@angular/router';
-import { SPAHTENS } from '../model/mock.data';
+import { SPAHTENS } from '../model/mockspahten.data';
+import { Spahtens } from '../model/spahtens.model'
 
 
 //if its injectable, you need to inject it into a components who wants to call the service constructor
@@ -12,7 +13,7 @@ export class GetSpahtenService {
     constructor(private router: Router) {
     };
     
-    getSpahtens(): Spahtens[] {
+    getSpahtens(): Spahtens [] {
 
         //mock service call to pull in mock data
         return SPAHTENS;

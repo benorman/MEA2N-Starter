@@ -14,7 +14,7 @@ export class ProfileComponent {
 
     constructor(private auth:Auth, public getSpahtenService:GetSpahtenService){
         this.profile = JSON.parse(localStorage.getItem('profile'));
-        this.getSpahtenService = GetSpahtenService;
+        this.getSpahtenService = getSpahtenService;
 
     }
     title = 'Hi there! ';
