@@ -34,7 +34,7 @@ export const RACES: Races [] =[{
     "isMultiLapEvent": true,
     "isRelayRace":false,
     "RelayRaceRacers": 0,
-    "image": "https://www.dropbox.com/s/k7wow0f0hxmvpt8/Screenshot%202017-02-04%2015.27.54.png?dl=0",
+    "image": "https://s29.postimg.org/n69yotezb/blizzardblast.png",
     "website":"http://www.blizzardblastrun.com/",
     "active": true
 
@@ -53,7 +53,7 @@ export const RACES: Races [] =[{
     "isMultiLapEvent": true,
     "isRelayRace":false,
     "RelayRaceRacers": 0,
-    "image": "https://www.dropbox.com/s/4n0t9uwxlyo0uih/Screenshot%202017-02-04%2015.38.49.png?dl=0",
+    "image": "https://s30.postimg.org/st5b28fxt/polarbear.png",
     "website": "http://www.shalehilladventure.com/feb-4th-2017---polar-bear-challenge.html",
     "active": true
 },{
@@ -86,7 +86,7 @@ export const RACES: Races [] =[{
     "isMultiLapEvent": false,
     "isRelayRace":false,
     "RelayRaceRacers": 0,
-    "image": "https://www.dropbox.com/s/ql16632umsaamgv/Screenshot%202017-02-04%2015.59.47.png?dl=0",
+    "image": "https://s27.postimg.org/7qw5epyo3/endurancesociety.png",
     "website": "http://www.endurancesociety.org/snowshoe-festival.html",
     "active": false
 

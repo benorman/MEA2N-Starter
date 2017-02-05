@@ -1,10 +1,18 @@
 <div *ngIf="races">
     <div class = "white" *ngFor="let race of races">
-   <div> <img src={{race.image}}></div>
-    <ul >
-        <h1>{{race.title}}</h1>
-    </ul>
-
+   <div class="raceVenue">
+       <div class="racePicture">
+           <img class="racelogoPicture" src={{race.image}}>
+       </div>
+       <div class="raceText">
+            <ul >
+                <li><h4>{{race.title}}</h4></li>
+                <li>Location: {{race.location}}</li>
+                <li>Address: {{race.address}}</li>
+                <li *ngIf="!race.isNonOCREvent">Course Length: {{race.milesPerLap}}</li>
+            </ul>
+       </div>
+   </div>
 </div>
 
 </div>
