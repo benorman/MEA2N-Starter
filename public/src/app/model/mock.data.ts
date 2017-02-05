@@ -36,7 +36,9 @@ export const RACES: Races [] =[{
     "RelayRaceRacers": 0,
     "image": "https://s29.postimg.org/n69yotezb/blizzardblast.png",
     "website":"http://www.blizzardblastrun.com/",
-    "active": true
+    "active": true,
+    "show": false,
+    "hide":true
 
 
 },{
@@ -55,7 +57,9 @@ export const RACES: Races [] =[{
     "RelayRaceRacers": 0,
     "image": "https://s30.postimg.org/st5b28fxt/polarbear.png",
     "website": "http://www.shalehilladventure.com/feb-4th-2017---polar-bear-challenge.html",
-    "active": true
+    "active": true,
+    "show": false,
+    "hide":true
 },{
 
     "ID": "3A",
@@ -88,7 +92,9 @@ export const RACES: Races [] =[{
     "RelayRaceRacers": 0,
     "image": "https://s27.postimg.org/7qw5epyo3/endurancesociety.png",
     "website": "http://www.endurancesociety.org/snowshoe-festival.html",
-    "active": false
+    "active": false,
+    "show": false,
+    "hide":true
 
 }];
 

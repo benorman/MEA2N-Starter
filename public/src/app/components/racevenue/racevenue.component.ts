@@ -6,6 +6,7 @@ import { OnInit } from '@angular/core';
 import { GetRaces } from '../../services/getraces.service';
 
 
+
 @Component({
     selector: 'racevenue',
     templateUrl: './racevenue.component.html',
@@ -34,5 +35,8 @@ export class RaceVenueComponent implements OnInit {
     ngOnInit(): void {
         this.getRaces();
     }
+
+   
+
 
 }

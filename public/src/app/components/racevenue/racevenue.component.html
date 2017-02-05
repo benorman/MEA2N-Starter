@@ -7,11 +7,23 @@
        <div class="raceText">
             <ul >
                 <li><h4>{{race.title}}</h4></li>
-                <li>Location: {{race.location}}</li>
-                <li>Address: {{race.address}}</li>
-                <li *ngIf="!race.isNonOCREvent">Course Length: {{race.milesPerLap}}</li>
+
             </ul>
        </div>
+       <button (click)="(race.show==false)?race.show=true:race.show=false" class="pull-right">
+           {{race.show | json}}
+           <span *ngIf="race.show" class="glyphicon glyphicon-menu-up"></span>
+           <span *ngIf="!race.show" class="glyphicon glyphicon-menu-down"></span>
+
+
+               <ul  *ngIf="race.show" class="align-left">
+                   <li>Location: {{race.location}}</li>
+                   <li>Address: {{race.address}}</li>
+                   <li *ngIf="!race.isNonOCREvent">Course Length: {{race.milesPerLap}}</li>
+               </ul>
+
+
+       </button>
    </div>
 </div>
 

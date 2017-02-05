@@ -16,6 +16,8 @@ export class Races{
     image: string;
     website: string;
     active: boolean;
+    show: boolean;
+    hide: boolean;
 
 
 }
