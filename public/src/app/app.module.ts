@@ -16,6 +16,7 @@ import { RaceVenueComponent } from './components/racevenue/racevenue.component'
 
 import { Auth } from './services/auth.service'
 import { GetRaces } from './services/getraces.service';
+import { GetSpahtenService } from './services/getspahtens.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GetRaces } from './services/getraces.service';
       appRoutingProviders,
       AUTH_PROVIDERS,
       Auth, 
-      GetRaces
+      GetRaces,
+      GetSpahtenService
   ],
   bootstrap: [AppComponent]
 })
