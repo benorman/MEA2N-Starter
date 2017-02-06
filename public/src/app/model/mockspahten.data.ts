@@ -1,4 +1,4 @@
-import {Spahtens} from './spahtens.model';
+import {Spahten} from './spahtens.model';
 
 
 /*
@@ -21,24 +21,7 @@ import {Spahtens} from './spahtens.model';
  */
 
 
-export const SPAHTENS: Spahtens [] =[{
-
-
-    "id":"",
-    "name": "",
-    "email": "",
-    "streetAddress": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "racesCompleted": [{
-        "id": "",
-        "laps": 0,
-        "competativeLap": false,
-        "racePoints": 0
-    }],
-    "racesRun":0,
-    "totalPoints":0,
-    "image":""
-
-}];
+export class SPAHTEN{
+ Spahten: Spahten;
+    
+};

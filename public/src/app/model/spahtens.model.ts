@@ -1,21 +1,23 @@
+export class Spahten {
 
-export class Spahtens {
 
+    name:string = "";
+    email:string = "";
+    streetAddress:string = "";
+    city:string = "";
+    state:string = "";
+    zip:number = 0;
+    racesCompleted:{id:string, laps:number, competativeLap:boolean, racePoints:number}[] = [
+        {
+            "id": "",
+            "laps": 0,
+            "competativeLap": false,
+            "racePoints": 0
 
-        name: string;
-        email: string;
-        streetAddress: string;
-        city: string;
-        state: string;
-        zip: number;
-        racesCompleted: [{
-            id: number,
-            laps: number,
-            competitiveLap: boolean,
-            racePoints: number
-        }];
-        racesRun: number;
-        totalPoints: number;
-        image: string;
+        }
+    ];
+    racesRun:number = 0;
+    totalPoints:number = 0;
+    image:string = "https://s23.postimg.org/skduasghn/NE_Spahtens_FINAL.png";
 
 }

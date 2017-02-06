@@ -21,4 +21,4 @@ export class Races{
     hide: boolean;
 
 
-}
+};
