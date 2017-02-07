@@ -109,7 +109,10 @@ function findSpahten(req, res) {
             }
 
             if (existingSpahtenProfile) {
-                return res.status(200).send({info: 'The Spahten Profile w/ ID exists!', profile: existingSpahtenProfile })
+                return res.status(200).send({
+                    info: 'The Spahten Profile w/ ID exists!',
+                    profile: existingSpahtenProfile
+                })
             }
         })
 
@@ -123,7 +126,10 @@ function findSpahten(req, res) {
             }
 
             if (existingSpahtenProfile) {
-                return res.status(200).send({info: 'The Spahten Profile w/Email exists!', profile: existingSpahtenProfile})
+                return res.status(200).send({
+                    info: 'The Spahten Profile w/Email exists!',
+                    profile: existingSpahtenProfile
+                })
             } else {
                 return res.status(404).send({error: 'The Spahten Profile does not exist!'})
             }
@@ -148,80 +154,64 @@ function findSpahten(req, res) {
  racesRun:Number,
  totalPoints:Number,
  image:String
+
+
+ This function assumes that we have already tried to findSpahten() method call.
+
+ If you test this function in postman you might create duplicate
+
  */
 
 
 function createSpahten(req, res) {
 
-    const name = req.body.name;
-    const email = req.body.email;
-    const streetAddress = req.body.streetAddress;
-    const city = req.body.city;
-    const state = req.body.state;
-    const zip = req.body.zip;
-    const racesCompleted = req.body.racesCompleted;
-    const racesRun = req.body.racesRun;
-    const totalPoints = req.body.totalPoints;
-    const image = req.body.image;
-    const id = req.body.id;
+    spahtenProfile.name = req.body.name;
+    spahtenProfile.email = req.body.email;
+    spahtenProfile.streetAddress = req.body.streetAddress;
+    spahtenProfile.city = req.body.city;
+    spahtenProfile.state = req.body.state;
+    spahtenProfile.zip = req.body.zip;
+    spahtenProfile.racesCompleted = req.body.racesCompleted;
+    spahtenProfile.racesRun = req.body.racesRun;
+    spahtenProfile.totalPoints = req.body.totalPoints;
+    spahtenProfile.image = req.body.image;
+    spahtenProfile.id = req.body.id;
 
-    console.log(req.body);
+    console.log("ID is > " + spahtenProfile.id);
+    console.log("Email is > " + spahtenProfile.email);
 
-    if (!email) {
+    if (spahtenProfile.id.length>0 && spahtenProfile.email.length>0){
+        return res.status(422).send({error: 'This profile contains an id and email, it must exist!' + req})
+    }
+
+    if (!spahtenProfile.email) {
         return res.status(422).send({error: 'You must provide an email for the profile.' + req})
     }
     if (!req) {
         return res.status(422).send({error: 'You must provide an email for the profile.'})
     }
 
+    try {
 
-    SpahtenProfile.findOne({id: id}, function (err, existingSpahtenProfile) {
+        spahtenProfile.save(function (err, createSpahtenProfile) {
 
-        if (err) {
-            return res.status(501).json(err)
-        }
+            if (err) {
+                return res.status(500).json(err)
+            }
+            //grab the ID returned by mongo and set the ID on the spahtenProfile Object
 
-        // if user is not unique, return error
-        if (existingSpahtenProfile) {
-            return res.status(422).send({error: 'The Spahten Profile ID already exists'})
-        }
+            if (!spahtenProfile.id.length > 0) {
+                spahtenProfile.id = createSpahtenProfile._id;
+            }
 
-
-        spahtenProfile.name = name;
-        spahtenProfile.email = email;
-        spahtenProfile.streetAddress = streetAddress;
-        spahtenProfile.city = city;
-        spahtenProfile.state = state;
-        spahtenProfile.zip = zip;
-        spahtenProfile.racesCompleted = racesCompleted;
-        spahtenProfile.racesRun = racesRun;
-        spahtenProfile.totalPoints = totalPoints;
-        spahtenProfile.image = image;
-        spahtenProfile.id = id;
-
-
-        try {
-            spahtenProfile.save(function (err, createSpahtenProfile) {
-
-                if (err) {
-                    return res.status(500).json(err)
-                }
-                //grab the ID returned by mongo and set the ID on the spahtenProfile Object
-
-                if (!spahtenProfile.id.length > 0) {
-                    spahtenProfile.id = createSpahtenProfile._id;
-                }
-
-                console.log(spahtenProfile);
-                //return the spahtenProfile object
-                //TODO: set this object as a local storage cookie
-                return res.status(200).json(spahtenProfile);
-            })
-        } catch (error) {
-            console.log(error);
-        }
-
-    })
+            console.log(spahtenProfile);
+            //return the spahtenProfile object
+            //TODO: set this object as a local storage cookie
+            return res.status(200).json(spahtenProfile);
+        })
+    } catch (error) {
+        console.log("Error at Save profile: " + error);
+    }
 
 
 }
