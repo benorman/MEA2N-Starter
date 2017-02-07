@@ -6,12 +6,12 @@ export class Spahten {
     streetAddress:string = "";
     city:string = "";
     state:string = "";
-    zip:number = 0;
-    racesCompleted:{id:string, laps:number, competativeLap:boolean, racePoints:number}[] = [
+    zip:string = "";
+    racesCompleted:{id:string, laps:number, competitiveLap:boolean, racePoints:number}[] = [
         {
             "id": "",
             "laps": 0,
-            "competativeLap": false,
+            "competitiveLap": false,
             "racePoints": 0
 
         }

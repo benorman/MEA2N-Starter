@@ -164,7 +164,7 @@ export class ProfileComponent implements OnInit {
             console.log("Setting the streetAddress value as " + value["streetAddress"]);
             this.spahtenProfile.streetAddress = value["streetAddress"];
 
-        } else if (value.hasOwnProperty("zip") && this.spahtenProfile.zip > 0 && this.spahtenProfile.zip !== 0) {
+        } else if (value.hasOwnProperty("zip") && this.spahtenProfile.zip.length > 0) {
             console.log("Setting the zip value as " + value["zip"]);
             this.spahtenProfile.zip = value["zip"];
         }

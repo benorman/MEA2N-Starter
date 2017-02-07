@@ -1,7 +1,7 @@
 <div *ngIf="getSpahtenService.checkForSpahten(profile.email, profile.name)">
 
-    <h4>{{title}} {{profile.name?profile.name:"Spahten"}}</h4>
-    <div class="col-md-4">
+    <h4 class="changeColorForSara">{{title}} {{profile.name?profile.name:"Spahten"}}</h4>
+    <div class="col-md-4 changeColorForSara">
         <img class="profilePicture" [src]="profile.pictureLarge?profile.pictureLarge:spahtenProfile.image">
         <p>Name: {{spahtenProfile.name}}</p>
         <p>Email: {{spahtenProfile.email}}</p>
