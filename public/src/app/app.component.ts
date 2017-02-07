@@ -11,5 +11,5 @@ export class AppComponent {
     
   }
 
-  title = 'app works!';
+  title = 'app works duh!';
 }

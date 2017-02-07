@@ -38,7 +38,7 @@ import { GetSpahtenService } from './services/getspahtens.service';
   ],
   providers: [
       appRoutingProviders,
-      AUTH_PROVIDERS,
+
       Auth, 
       GetRaces,
       GetSpahtenService
