@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Auth } from '../../services/auth.service';
 
 @Component({
     selector: 'dashboard',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+    constructor(private auth:Auth){
+
+    }
     title = 'racelocal2017 dashboard!';
 }

@@ -1,0 +1,20 @@
+.racelocallogo{
+    height: 75px;
+    margin-left: .5em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+body {
+    background-color: black;
+}
+
+
+.racelocaltext {
+    margin-top: .5em;
+}
+
+.profile-btn {
+    margin-top: .5em;
+    margin-right: 1em;
+}

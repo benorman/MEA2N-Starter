@@ -1,0 +1,60 @@
+<div *ngIf="getSpahtenService.checkForSpahten(profile.email, profile.name)">
+
+    <h4>{{title}} {{profile.name?profile.name:"Spahten"}}</h4>
+    <div class="col-md-4">
+        <img class="profilePicture" [src]="profile.pictureLarge?profile.pictureLarge:spahtenProfile.image">
+        <p>Name: {{spahtenProfile.name}}</p>
+        <p>Email: {{spahtenProfile.email}}</p>
+        <p>Street Address: {{spahtenProfile.streetAddress}}</p>
+        <p>Zip Code: {{spahtenProfile.zip}}</p>
+
+        <!-- <p>{{profile | json}}</p> -->
+
+    </div>
+
+</div>
+
+<div>
+    <form [formGroup]="spahtenForm"
+          (ngSubmit)="onSubmit(spahtenForm.value)"
+          class="ui form">
+
+        <div *ngIf="spahtenProfile.name.length <= 0">
+            <label for="nameInput">Name: </label>
+            <input type="text"
+                   id="nameInput"
+                   [formControl]="spahtenForm.controls['name']"
+                   formControlName="name"
+                   (keyup)="this.updateProfileName($event)">
+        </div>
+
+        <label for="emailInput">Email: </label>
+        <input type="text"
+               id="emailInput"
+               [formControl]="spahtenForm.controls['email']"
+               formControlName="email"
+                (keyup)="this.updateProfileEmail($event)">
+        <br/>
+
+        <label for="streetAddressInput">Street Address: </label>
+        <input type="text"
+               id="streetAddressInput"
+               [formControl]="spahtenForm.controls['streetAddress']"
+               formControlName="streetAddress"
+               (keyup)="this.updateProfileStreetAddress($event)">
+
+        <br/>
+
+        <label for="zipInput">Zip Code: </label>
+        <input type="text"
+               id="zipInput"
+               [formControl]="spahtenForm.controls['zip']"
+               formControlName="zip"
+               (keyup)="this.updateProfileZip($event)">
+
+<br/>
+        <button type="submit" class="ui button">Save My Data!</button>
+    </form>
+    <p> Value: {{spahtenForm.value | json}}</p>
+    <p> Email: {{spahtenProfile.email}}</p>
+</div>
