@@ -7,16 +7,16 @@ import { Spahten } from '../model/spahtens.model'
 //if its injectable, you need to inject it into a components who wants to call the service constructor
 @Injectable()
 export class GetSpahtenService {
-    
-    
+
+
     constructor(private router: Router) {
     };
-    
+
     //getSpahtens(): Spahten {
 
-        //mock service call to pull in mock data
-      //  return Spahten;
-   // }
+    //mock service call to pull in mock data
+    //  return Spahten;
+    // }
 
     storeSpahten(any: any): void {
         //store spahten data locally, mock service for development purposes
@@ -25,13 +25,13 @@ export class GetSpahtenService {
 
     createSpahten(any: any): void {
         //create a spahten in the DB
-  
+
     }
-    
+
     getSpahtenProfile(): any {
         //reads a spahten profile from the DB
         //don't store this shit in a cookie, check for a cookie first, check to make sure the data matches, or go to the DB
-        
+
         return (JSON.parse(localStorage.getItem('spahten')))
     }
 
@@ -45,7 +45,7 @@ export class GetSpahtenService {
         //if it does exist, we'll simply grab the data and return it from the DB and fill the field information in
         //without requiring the user to enter in text, just display it.
 
-        
+
         if(email==="vrsixed@gmail.com" || name ==="Ben Norman"){
             return true;
         }else {
@@ -56,5 +56,5 @@ export class GetSpahtenService {
     updateSpahten(any:any){
         //update an existing record for a spahten
     }
-    
+
 }

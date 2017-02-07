@@ -5,6 +5,8 @@
         <img class="profilePicture" [src]="profile.pictureLarge?profile.pictureLarge:spahtenProfile.image">
         <p>Name: {{spahtenProfile.name}}</p>
         <p>Email: {{spahtenProfile.email}}</p>
+        <p>Street Address: {{spahtenProfile.streetAddress}}</p>
+        <p>Zip Code: {{spahtenProfile.zip}}</p>
 
         <!-- <p>{{profile | json}}</p> -->
 
@@ -22,21 +24,33 @@
             <input type="text"
                    id="nameInput"
                    [formControl]="spahtenForm.controls['name']"
-                   formControlName="name">
+                   formControlName="name"
+                   (keyup)="this.updateProfileName($event)">
         </div>
 
         <label for="emailInput">Email: </label>
         <input type="text"
                id="emailInput"
                [formControl]="spahtenForm.controls['email']"
-               formControlName="email">
+               formControlName="email"
+                (keyup)="this.updateProfileEmail($event)">
         <br/>
 
         <label for="streetAddressInput">Street Address: </label>
         <input type="text"
                id="streetAddressInput"
                [formControl]="spahtenForm.controls['streetAddress']"
-               formControlName="streetAddress">
+               formControlName="streetAddress"
+               (keyup)="this.updateProfileStreetAddress($event)">
+
+        <br/>
+
+        <label for="zipInput">Zip Code: </label>
+        <input type="text"
+               id="zipInput"
+               [formControl]="spahtenForm.controls['zip']"
+               formControlName="zip"
+               (keyup)="this.updateProfileZip($event)">
 
 <br/>
         <button type="submit" class="ui button">Save My Data!</button>
