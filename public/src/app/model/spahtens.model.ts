@@ -1,6 +1,6 @@
 export class Spahten {
 
-
+    _id:string = "";
     name:string = "";
     email:string = "";
     streetAddress:string = "";

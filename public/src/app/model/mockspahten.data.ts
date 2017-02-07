@@ -5,6 +5,7 @@ import {Spahten} from './spahtens.model';
 
  Spahten Template Data:
 
+ _id:string;
  name: string;
  email: string;
  streetAddress: string;

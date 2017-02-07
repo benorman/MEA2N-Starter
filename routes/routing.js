@@ -34,7 +34,7 @@ module.exports = function (app) {
 
     //find a spahten profile
     //localhost:3000/api/core/spahten/findspahten
-    coreRoutes.get('/findspahten/:id', coreController.findSpahten)
+    coreRoutes.post('/findspahten', coreController.findSpahten)
     
     //create a spahten profile in the database
     coreRoutes.post('/spahten', coreController.createSpahten)
