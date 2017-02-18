@@ -5,6 +5,9 @@ import {Spahten} from '../../model/spahtens.model';
 import {OnInit} from '@angular/core';
 import {ProfileInterface} from './profile.interface';
 import {FormsModule, ReactiveFormsModule, FormBuilder, FormGroup} from '@angular/forms';
+import { AuthHttp } from 'angular2-jwt';
+import 'rxjs/add/operator/map';
+
 
 
 @Component({
@@ -36,6 +39,8 @@ import {FormsModule, ReactiveFormsModule, FormBuilder, FormGroup} from '@angular
  */
 export class ProfileComponent implements OnInit {
 
+
+
     public profileInterface:ProfileInterface;
 
     profile:any;
@@ -43,8 +48,10 @@ export class ProfileComponent implements OnInit {
     spahtenForm:FormGroup;
     spahtenFormBuilder:FormBuilder;
 
+    API_URL = 'http://localhost:3000';
 
-    constructor(private auth:Auth, public getSpahtenService:GetSpahtenService, fb:FormBuilder) {
+
+    constructor(private auth:Auth, public getSpahtenService:GetSpahtenService, fb:FormBuilder, public authHttp: AuthHttp) {
 
 
         this.getSpahtenService = getSpahtenService;
@@ -122,10 +129,14 @@ export class ProfileComponent implements OnInit {
 
     doInitialFieldSetting() {
 
+
+
         this.spahtenProfile.name = this.profile.name;
         this.spahtenProfile.email = this.profile.email ? this.profile.email : this.spahtenProfile.email;
         this.spahtenProfile.image = this.profile.image ? this.profile.image : this.spahtenProfile.image;
         this.spahtenProfile.streetAddress = "";
+        console.log(" The profile is >>>>>>>>>>>>>>>>>>>> " + JSON.stringify(this.spahtenProfile));
+        this.findSpahten(this.spahtenProfile);
 
         this.spahtenForm = this.spahtenFormBuilder.group({
 
@@ -138,6 +149,22 @@ export class ProfileComponent implements OnInit {
         });
 
 
+    }
+
+    public findSpahten(spahtenProfile:Spahten): Object {
+        console.log("Finding a Spahten hopefully");
+         var message = '';
+
+
+
+        this.authHttp.post(`${this.API_URL}/api/core/findspahten`, spahtenProfile)
+            .map(res => res.json())
+            .subscribe(
+                data => message = data.message,
+                error => message = error
+            );
+        console.log(message);
+        return (message);
     }
 
     onSubmit(value: Object):void {

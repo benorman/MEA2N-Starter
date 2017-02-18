@@ -20,7 +20,7 @@ export class Auth {
                 if(error){
                     throw new Error(error);
                 }
-
+                localStorage.setItem('access_token', authResult.accessToken);
                 localStorage.setItem('id_token', authResult.idToken);
                 localStorage.setItem('profile', JSON.stringify(profile));
                 console.log(profile);
@@ -44,6 +44,7 @@ export class Auth {
 
     public logout() {
         // Remove token from localStorage
+        localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
         console.log("Removed Tokens");

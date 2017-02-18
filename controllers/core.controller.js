@@ -93,15 +93,26 @@ function getSpahten(req, res) {
     res.send("Testing")
 }
 
+/*
+* This route tries to find a spahten profile by ID first, if there is no id, it looks
+* using an email and returns the profile found. If no profile is found it returns a 404.
+*
+*
+* */
+
+
+
+
 function findSpahten(req, res) {
 
 
     const email = req.body.email;
     const id = req.body.id;
 
+    console.log(req);
     console.log(req.body);
 
-    if (id.length > 0) {
+    if (id && id.length > 0) {
         SpahtenProfile.findOne({_id: id}, function (err, existingSpahtenProfile) {
 
             if (err) {

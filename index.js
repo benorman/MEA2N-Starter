@@ -42,7 +42,7 @@ mongoose.connect(config.database,function(err){
    // }
 })
 
-// enable CORS from the clien')side
+// enable CORS from the client side
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')

@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import {AUTH_PROVIDERS } from 'angular2-jwt';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 
 import { routing, appRoutingProviders } from './app.routing'
 
@@ -17,6 +18,14 @@ import { RaceVenueComponent } from './components/racevenue/racevenue.component'
 import { Auth } from './services/auth.service'
 import { GetRaces } from './services/getraces.service';
 import { GetSpahtenService } from './services/getspahtens.service';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenGetter: (() => localStorage.getItem('id_token')),
+    globalHeaders: [{'Content-Type': 'application/json'}],
+  }), http, options);
+}
+
 
 @NgModule({
   declarations: [
@@ -41,7 +50,12 @@ import { GetSpahtenService } from './services/getspahtens.service';
 
       Auth, 
       GetRaces,
-      GetSpahtenService
+      GetSpahtenService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }
   ],
   bootstrap: [AppComponent]
 })
