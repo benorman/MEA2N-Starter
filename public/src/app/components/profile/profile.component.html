@@ -1,6 +1,6 @@
-<div *ngIf="getSpahtenService.checkForSpahten(profile.email, profile.name)">
+<div *ngIf="!this.checkForFirstTimeEntry()">
 
-    <h4 class="changeColorForSara">{{title}} {{profile.name?profile.name:"Spahten"}}</h4>
+    <h4 class="changeColorForSara">{{title}} {{spahtenProfile.name?spahtenProfile.name:"Spahten"}}</h4>
     <div class="col-md-4 changeColorForSara">
         <img class="profilePicture" [src]="profile.pictureLarge?profile.pictureLarge:spahtenProfile.image">
         <p>Name: {{spahtenProfile.name}}</p>
@@ -15,46 +15,71 @@
 </div>
 
 <div>
+
+    <div *ngIf="this.checkForFirstTimeEntry()">
+        <h1> Hello Spahten! </h1>
+        <p> We need to complete your profile before you can get started. </p>
+        <p> Please fill out the following information in order to log your laps.</p>
+
+
+    </div>
+
+
     <form [formGroup]="spahtenForm"
           (ngSubmit)="onSubmit(spahtenForm.value)"
           class="ui form">
 
-        <div *ngIf="spahtenProfile.name.length <= 0">
-            <label for="nameInput">Name: </label>
+        <div *ngIf="this.spahtenProfileName">
+            <p *ngIf="this.spahtenProfileName && !this.spahtenProfileNameisEmail"> What is your name? </p>
+            <p *ngIf="this.spahtenProfileNameisEmail"> What is your name? (email addresses don't make for good
+                names)</p>
             <input type="text"
                    id="nameInput"
+                   placeholder="My name is..."
                    [formControl]="spahtenForm.controls['name']"
                    formControlName="name"
                    (keyup)="this.updateProfileName($event)">
         </div>
 
-        <label for="emailInput">Email: </label>
-        <input type="text"
-               id="emailInput"
-               [formControl]="spahtenForm.controls['email']"
-               formControlName="email"
-                (keyup)="this.updateProfileEmail($event)">
-        <br/>
+        <div *ngIf="this.spahtenProfileEmail">
+            <label for="emailInput">Email: </label>
+            <input type="text"
+                   placeholder="My email is..."
+                   id="emailInput"
+                   [formControl]="spahtenForm.controls['email']"
+                   formControlName="email"
+                   (keyup)="this.updateProfileEmail($event)">
+            <br/>
+        </div>
 
-        <label for="streetAddressInput">Street Address: </label>
-        <input type="text"
-               id="streetAddressInput"
-               [formControl]="spahtenForm.controls['streetAddress']"
-               formControlName="streetAddress"
-               (keyup)="this.updateProfileStreetAddress($event)">
+        <div *ngIf="this.spahtenProfileStreetAddress">
+            <p><span>Enter your street address</span><span
+                    *ngIf="spahtenProfile.zip.length <= 0"> and zip code</span><span> so we can mail you swag!</span>
+            </p>
+            <input type="text"
+                   id="streetAddressInput"
+                   placeholder="My street address is..."
+                   [formControl]="spahtenForm.controls['streetAddress']"
+                   formControlName="streetAddress"
+                   (keyup)="this.updateProfileStreetAddress($event)">
 
-        <br/>
+            <br/>
+        </div>
 
-        <label for="zipInput">Zip Code: </label>
-        <input type="text"
-               id="zipInput"
-               [formControl]="spahtenForm.controls['zip']"
-               formControlName="zip"
-               (keyup)="this.updateProfileZip($event)">
 
-<br/>
-        <button type="submit" class="ui button">Save My Data!</button>
+        <div *ngIf="this.spahtenProfileZip">
+            <p *ngIf="!spahtenProfile.streetAddress.length <= 0"> Enter your zip code so we can mail swag!</p>
+            <input type="text"
+                   id="zipInput"
+                   placeholder="My zip code is..."
+                   [formControl]="spahtenForm.controls['zip']"
+                   formControlName="zip"
+                   (keyup)="this.updateProfileZip($event)">
+
+            <br/>
+        </div>
+        <button type="submit" class="ui button" *ngIf="this.checkForFirstTimeEntry()">Save My Data!</button>
     </form>
-    <p> Value: {{spahtenForm.value | json}}</p>
-    <p> Email: {{spahtenProfile.email}}</p>
+    <p *ngIf="this.checkForFirstTimeEntry()"> Value: {{spahtenForm.value | json}}</p>
+
 </div>

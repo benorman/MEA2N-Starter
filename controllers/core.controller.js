@@ -108,6 +108,7 @@ function findSpahten(req, res) {
 
     const email = req.body.email;
     const id = req.body.id;
+    const name = req.body.name;
 
     console.log(req);
     console.log(req.body);
@@ -128,7 +129,7 @@ function findSpahten(req, res) {
         })
 
 
-    } else {
+    } else{
 
         SpahtenProfile.findOne({email: email}, function (err, existingSpahtenProfile) {
 
@@ -146,7 +147,7 @@ function findSpahten(req, res) {
             }
 
         });
-    }
+    } 
 
 
 };
@@ -218,7 +219,10 @@ function createSpahten(req, res) {
             console.log(spahtenProfile);
             //return the spahtenProfile object
             //TODO: set this object as a local storage cookie
-            return res.status(200).json(spahtenProfile);
+            return res.status(200).send({
+                info: 'The Spahten Profile was created',
+                profile: spahtenProfile
+            })
         })
     } catch (error) {
         console.log("Error at Save profile: " + error);

@@ -1,15 +1,23 @@
 
 import { Injectable }      from '@angular/core';
 import { Router } from '@angular/router';
-import { Spahten } from '../model/spahtens.model'
+import { Spahten } from '../model/spahtens.model';
+import { AuthHttp } from 'angular2-jwt';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
 
 
 //if its injectable, you need to inject it into a components who wants to call the service constructor
 @Injectable()
 export class GetSpahtenService {
 
+    API_URL = 'http://localhost:3000';
+    spahtenProfile:Spahten;
 
-    constructor(private router: Router) {
+
+    constructor(private router: Router, public authHttp: AuthHttp) {
     };
 
     //getSpahtens(): Spahten {
@@ -56,5 +64,47 @@ export class GetSpahtenService {
     updateSpahten(any:any){
         //update an existing record for a spahten
     }
+
+    public findSpahten(spahtenProfile:Spahten): Observable<any> {
+        console.log("Finding a Spahten hopefully");
+        
+        return this.authHttp.post(`${this.API_URL}/api/core/findspahten`, spahtenProfile)
+            .map(response => response.json())
+            .catch((error:any) => Observable.throw(error || 'Server error')
+           
+            );
+        //console.log(res.statusCode);
+
+    }
+
+    public checkForFirstTimeEntry(): boolean {
+
+
+        if(localStorage.getItem("spahten")){
+
+            this.spahtenProfile = JSON.parse(localStorage.getItem("spahten"));
+
+        } else {
+            return true;
+        }
+
+        console.log("CHECKING FOR FIRST TIME ENTRY")
+
+        if(this.spahtenProfile.name.length <=0 ||
+            this.spahtenProfile.email.length <=0 ||
+            this.spahtenProfile.streetAddress.length <=0 ||
+            this.spahtenProfile.zip.length <=0 ||
+            this.spahtenProfile.name.includes('@')){
+
+           console.log("We're missing information....")
+            return true;
+        } else {
+            console.log("We got the information...")
+            return false;
+        }
+
+
+    }
+
 
 }

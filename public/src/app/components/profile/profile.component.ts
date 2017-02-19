@@ -5,8 +5,7 @@ import {Spahten} from '../../model/spahtens.model';
 import {OnInit} from '@angular/core';
 import {ProfileInterface} from './profile.interface';
 import {FormsModule, ReactiveFormsModule, FormBuilder, FormGroup} from '@angular/forms';
-import { AuthHttp } from 'angular2-jwt';
-import 'rxjs/add/operator/map';
+
 
 
 
@@ -48,10 +47,21 @@ export class ProfileComponent implements OnInit {
     spahtenForm:FormGroup;
     spahtenFormBuilder:FormBuilder;
 
-    API_URL = 'http://localhost:3000';
+    spahtenProfileEmail = false;
+
+    spahtenProfileName = false;
+
+    spahtenProfileStreetAddress = false;
+
+    spahtenProfileZip = false;
+
+    spahtenProfileNameisEmail = false;
 
 
-    constructor(private auth:Auth, public getSpahtenService:GetSpahtenService, fb:FormBuilder, public authHttp: AuthHttp) {
+
+
+
+    constructor(private auth:Auth, public getSpahtenService:GetSpahtenService, fb:FormBuilder) {
 
 
         this.getSpahtenService = getSpahtenService;
@@ -127,16 +137,24 @@ export class ProfileComponent implements OnInit {
 
     }
 
+
+    //this method pulls back the profile object from Auth0 and sets some fields.
+    //for facebook, the name field is a the name set in their profile
+    //for those who registerd with an email, the name is an email.
+
     doInitialFieldSetting() {
 
 
-
-        this.spahtenProfile.name = this.profile.name;
+        //check the profile name fetched from auth0, if it is an email address, set it to empty forcing the user to input a name
+        //if it is a name from facebook, then set it as the name from facebook
+        this.spahtenProfile.name = this.spahtenProfile.name?this.spahtenProfile.name:this.profile.name.includes('@')?"":this.profile.name;
         this.spahtenProfile.email = this.profile.email ? this.profile.email : this.spahtenProfile.email;
         this.spahtenProfile.image = this.profile.image ? this.profile.image : this.spahtenProfile.image;
-        this.spahtenProfile.streetAddress = "";
+
         console.log(" The profile is >>>>>>>>>>>>>>>>>>>> " + JSON.stringify(this.spahtenProfile));
+
         this.findSpahten(this.spahtenProfile);
+        this.setFirstTimeProfileFlags();
 
         this.spahtenForm = this.spahtenFormBuilder.group({
 
@@ -151,20 +169,62 @@ export class ProfileComponent implements OnInit {
 
     }
 
-    public findSpahten(spahtenProfile:Spahten): Object {
-        console.log("Finding a Spahten hopefully");
-         var message = '';
+    private findSpahten(spahten:Spahten){
+
+        this.getSpahtenService.findSpahten(spahten).subscribe(
+            response => {
+                console.log(response.profile);
+                this.spahtenProfile.name= response.profile.name.length!=0? response.profile.name : this.spahtenProfile.name ;
+                this.spahtenProfile.email= response.profile.email.length!=0? response.profile.email : this.spahtenProfile.email ;
+                this.spahtenProfile.streetAddress = response.profile.streetAddress.length!=0? response.profile.streetAddress : this.spahtenProfile.streetAddress ;
+                this.spahtenProfile.zip = response.profile.zip.length!=0? response.profile.zip : this.spahtenProfile.zip ;
+                this.setFirstTimeProfileFlags();
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
 
 
+    
+    setFirstTimeProfileFlags(){
+        if(this.checkForFirstTimeEntry()){
+            console.log("SETTING FIRST TIME FLAGS")
+            //check each critical item, if we need it set it to true
+            //at this point either we pulled the information from local storage or the DB if it exists
+            if(this.spahtenProfile.email.length<=0){
 
-        this.authHttp.post(`${this.API_URL}/api/core/findspahten`, spahtenProfile)
-            .map(res => res.json())
-            .subscribe(
-                data => message = data.message,
-                error => message = error
-            );
-        console.log(message);
-        return (message);
+                this.spahtenProfileEmail = true;
+            }
+
+            if(this.spahtenProfile.name.includes('@')){
+
+                this.spahtenProfileNameisEmail = true;
+            }
+
+            if(this.spahtenProfile.name.length<=0 || this.spahtenProfile.name.includes('@')){
+                this.spahtenProfileName = true;
+
+            }
+            if(this.spahtenProfile.streetAddress.length<=0){
+                this.spahtenProfileStreetAddress = true;
+            }
+            if(this.spahtenProfile.zip.length<=0){
+                this.spahtenProfileZip = true;
+            }
+            
+        }
+        
+    }
+    
+    
+    checkForFirstTimeEntry(): boolean {
+
+       return(this.getSpahtenService.checkForFirstTimeEntry());
+        
+        
     }
 
     onSubmit(value: Object):void {
@@ -200,6 +260,8 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem("spahten", spahten);
 
     }
+
+
 
 
 
