@@ -47,6 +47,7 @@ export class Auth {
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');
+        localStorage.removeItem('spahten');
         console.log("Removed Tokens");
     }
 }

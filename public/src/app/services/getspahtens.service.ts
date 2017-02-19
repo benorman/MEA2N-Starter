@@ -77,6 +77,8 @@ export class GetSpahtenService {
 
     }
 
+    
+    //if we're missing information return true and force the user to update
     public checkForFirstTimeEntry(): boolean {
 
 
