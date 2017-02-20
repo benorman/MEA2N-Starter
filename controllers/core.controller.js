@@ -110,8 +110,9 @@ function findSpahten(req, res) {
     const id = req.body.id;
     const name = req.body.name;
 
+    
     if (id && id.length > 0) {
-        SpahtenProfile.findOne({_id: id}, function (err, existingSpahtenProfile) {
+        SpahtenProfile.findOne({id: id}, function (err, existingSpahtenProfile) {
 
             if (err) {
                 return res.status(501).json(err)
@@ -190,11 +191,8 @@ function createSpahten(req, res) {
     spahtenProfile.image = req.body.image;
     spahtenProfile.id = req.body.id;
 
-    console.log("ID is > " + spahtenProfile.id);
-    console.log("Email is > " + spahtenProfile.email);
-
-    if (spahtenProfile.id.length>0 && spahtenProfile.email.length>0){
-        return res.status(422).send({error: 'This profile contains an id and email, it must exist!' + req})
+    if (!spahtenProfile.id) {
+        return res.status(422).send({error: 'You must provide an id for the profile.' + req})
     }
 
     if (!spahtenProfile.email) {
@@ -211,15 +209,9 @@ function createSpahten(req, res) {
             if (err) {
                 return res.status(500).json(err)
             }
-            //grab the ID returned by mongo and set the ID on the spahtenProfile Object
-
-            if (!spahtenProfile.id.length > 0) {
-                spahtenProfile.id = createSpahtenProfile._id;
-            }
-
-            console.log(spahtenProfile);
+        
             //return the spahtenProfile object
-            //TODO: set this object as a local storage cookie
+
             return res.status(200).send({
                 info: 'The Spahten Profile was created',
                 profile: spahtenProfile

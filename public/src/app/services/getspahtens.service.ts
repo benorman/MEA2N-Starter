@@ -99,18 +99,16 @@ export class GetSpahtenService {
             return true;
         }
 
-        console.log("CHECKING FOR FIRST TIME ENTRY")
-
         if(this.spahtenProfile.name.length <=0 ||
             this.spahtenProfile.email.length <=0 ||
             this.spahtenProfile.streetAddress.length <=0 ||
             this.spahtenProfile.zip.length <=0 ||
             this.spahtenProfile.name.includes('@')){
 
-           console.log("We're missing information....")
+          // console.log("We're missing information....")
             return true;
         } else {
-            console.log("We got the information...")
+          //  console.log("We got the information...")
             return false;
         }
 

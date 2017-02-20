@@ -14,7 +14,7 @@ Make sure the post body has Json selected as the type when using Postman to Test
 
 
 const SPAHTENPROFILESCHEMA = new Schema({
-
+    
     id:String,
     name:String,
     email:String,

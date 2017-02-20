@@ -66,6 +66,7 @@ export class ProfileComponent implements OnInit {
 
         this.getSpahtenService = getSpahtenService;
 
+        //TODO: this could be an issue 
         if(localStorage.getItem("spahten")){
 
             this.spahtenProfile = JSON.parse(localStorage.getItem("spahten"));
@@ -147,6 +148,8 @@ export class ProfileComponent implements OnInit {
 
         //check the profile name fetched from auth0, if it is an email address, set it to empty forcing the user to input a name
         //if it is a name from facebook, then set it as the name from facebook
+        this.spahtenProfile.id = this.profile.userId.replace("|","");
+
         this.spahtenProfile.name = this.spahtenProfile.name?this.spahtenProfile.name:this.profile.name.includes('@')?"":this.profile.name;
         this.spahtenProfile.email = this.profile.email ? this.profile.email : this.spahtenProfile.email;
         this.spahtenProfile.image = this.profile.image ? this.profile.image : this.spahtenProfile.image;
@@ -174,10 +177,15 @@ export class ProfileComponent implements OnInit {
         this.getSpahtenService.findSpahten(spahten).subscribe(
             response => {
                 console.log(response.profile);
+                this.spahtenProfile.id= response.profile.id.length!=0? response.profile.id : "";
                 this.spahtenProfile.name= response.profile.name.length!=0? response.profile.name : this.spahtenProfile.name ;
                 this.spahtenProfile.email= response.profile.email.length!=0? response.profile.email : this.spahtenProfile.email ;
                 this.spahtenProfile.streetAddress = response.profile.streetAddress.length!=0? response.profile.streetAddress : this.spahtenProfile.streetAddress ;
                 this.spahtenProfile.zip = response.profile.zip.length!=0? response.profile.zip : this.spahtenProfile.zip ;
+
+                console.log("Writing the Spahten Cookie");
+                localStorage.setItem("spahten", JSON.stringify(this.spahtenProfile));
+
                 this.setFirstTimeProfileFlags();
 
             },
