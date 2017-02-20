@@ -30,11 +30,20 @@ export class GetSpahtenService {
         //store spahten data locally, mock service for development purposes
         localStorage.setItem('spahten', JSON.stringify(any));
     }
+    
+    public createSpahten(spahtenProfile:Spahten): Observable<any> {
+        console.log("Creating a Spahten Profile!!");
 
-    createSpahten(any: any): void {
-        //create a spahten in the DB
+        return this.authHttp.post(`${this.API_URL}/api/core/spahten`, spahtenProfile)
+            .map(response => response.json())
+            .catch((error:any) => Observable.throw(error || 'Server error')
+
+            );
+        //console.log(res.statusCode);
 
     }
+    
+    
 
     getSpahtenProfile(): any {
         //reads a spahten profile from the DB

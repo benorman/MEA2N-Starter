@@ -229,16 +229,6 @@ export class ProfileComponent implements OnInit {
 
     onSubmit(value: Object):void {
 
-        console.log('you submitted value: ', value);
-
-        console.log(value.hasOwnProperty("name"));
-        console.log("Here is the name " + value["name"]);
-        console.log("Here is the email " + value["email"]);
-        console.log("Here is the zip " + value["zip"]);
-        console.log("Here is the streetAddress " + value["streetAddress"]);
-
-
-
         if (value.hasOwnProperty("name") && this.spahtenProfile.name.length > 0) {
             console.log("Setting the Name value as " + value["name"]);
             this.spahtenProfile.name = value["name"];
@@ -258,6 +248,20 @@ export class ProfileComponent implements OnInit {
         var spahten= JSON.stringify(this.spahtenProfile);
        // localStorage.setItem("spahten") = JSON.stringify(this.spahtenProfile);
         localStorage.setItem("spahten", spahten);
+        
+        console.log("Calling the Create Spahten Service");
+       try {
+           this.getSpahtenService.createSpahten(this.spahtenProfile).subscribe(
+               response => {
+                   console.log("And the response is" + response);
+               },
+               err => {
+                   console.log(err);
+               }
+           );
+       }catch(error){
+           console.log("ERROR FOUND " + error);
+       }
 
     }
 

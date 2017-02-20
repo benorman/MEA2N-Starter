@@ -91,7 +91,7 @@ module.exports = function (app) {
     
     
     //create a spahten profile in the database
-    coreRoutes.post('/spahten', coreController.createSpahten)
+    coreRoutes.post('/spahten', jwtCheck, coreController.createSpahten)
 
     app.get('/', function(req, res){
         console.log("Sending Index File")

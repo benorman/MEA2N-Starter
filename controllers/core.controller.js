@@ -24,7 +24,7 @@ exports.findSpahten = findSpahten;
 
 const SpahtenProfile = require('./datamodel/spahtenProfile');
 
-const spahtenProfile = new SpahtenProfile();
+spahtenProfile = new SpahtenProfile();
 
 function deleteSpahten(req, res) {
 
@@ -110,9 +110,6 @@ function findSpahten(req, res) {
     const id = req.body.id;
     const name = req.body.name;
 
-    console.log(req);
-    console.log(req.body);
-
     if (id && id.length > 0) {
         SpahtenProfile.findOne({_id: id}, function (err, existingSpahtenProfile) {
 
@@ -177,6 +174,10 @@ function findSpahten(req, res) {
 
 function createSpahten(req, res) {
 
+    console.log("CREATING A SPAHTEN PROFILE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+    spahtenProfile = new SpahtenProfile();
+
     spahtenProfile.name = req.body.name;
     spahtenProfile.email = req.body.email;
     spahtenProfile.streetAddress = req.body.streetAddress;
@@ -203,9 +204,9 @@ function createSpahten(req, res) {
         return res.status(422).send({error: 'You must provide an email for the profile.'})
     }
 
-    try {
+ 
 
-        spahtenProfile.save(function (err, createSpahtenProfile) {
+    spahtenProfile.save( spahtenProfile, function (err, createSpahtenProfile) {
 
             if (err) {
                 return res.status(500).json(err)
@@ -224,9 +225,7 @@ function createSpahten(req, res) {
                 profile: spahtenProfile
             })
         })
-    } catch (error) {
-        console.log("Error at Save profile: " + error);
-    }
+   
 
 
 }
