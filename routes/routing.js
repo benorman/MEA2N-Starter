@@ -1,6 +1,7 @@
 var path = require('path');
 
-const coreController = require('../controllers/core.controller.js')
+const coreController = require('../controllers/core.controller.js');
+const raceController = require('../controllers/race.controller');
 
 const express = require('express')
 
@@ -19,8 +20,9 @@ const REQUIRE_ADMIN   = 'Admin'
 
 module.exports = function (app) {
     // initialize route groups
-    const apiRoutes  = express.Router()
-    const coreRoutes = express.Router()
+    const apiRoutes  = express.Router();
+    const coreRoutes = express.Router();
+    const raceRoutes = express.Router();
 
 
     const jwtCheck = jwt({
@@ -73,28 +75,35 @@ module.exports = function (app) {
 
     // Set auth routes as subgroup/middleware to apiRoutes
 
-    apiRoutes.use('/core',coreRoutes)
+    apiRoutes.use('/core',coreRoutes);
+    apiRoutes.use('/race',raceRoutes);
 
     //delete a spahten profile 
-    coreRoutes.delete('/spahten/:id', coreController.deleteSpahten)
+    coreRoutes.delete('/spahten/:id', coreController.deleteSpahten);
 
     //update a spahten profile
-    coreRoutes.put('/spahten/:id',coreController.updateSpahten)
+    coreRoutes.put('/spahten/:id',coreController.updateSpahten);
 
     // get a spahten profile
-    coreRoutes.get('/spahten/:id', coreController.getSpahten)
+    coreRoutes.get('/spahten/:id', coreController.getSpahten);
 
     //find a spahten profile
     //localhost:3000/api/core/spahten/findspahten
-    coreRoutes.post('/findspahten', jwtCheck, coreController.findSpahten)
+    coreRoutes.post('/findspahten', jwtCheck, coreController.findSpahten);
 
     
     
     //create a spahten profile in the database
-    coreRoutes.post('/spahten', jwtCheck, coreController.createSpahten)
+    coreRoutes.post('/spahten', jwtCheck, coreController.createSpahten);
+
+    //get race venues
+    raceRoutes.get('/racevenues', raceController.getRaceVenues);
+
+    //get a race venue's information
+    raceRoutes.get('/racevenuedetail/:ID', raceController.getRaceVenueInfo);
 
     app.get('/', function(req, res){
-        console.log("Sending Index File")
+        console.log("Sending Index File");
         try {
            // res.sendFile('index.html', {root: __dirname + "/client"});
         }catch(error){
@@ -104,7 +113,7 @@ module.exports = function (app) {
 
 
     // set URL for API group routes
-    app.use('/api', apiRoutes)
+    app.use('/api', apiRoutes);
     /*app.use(function (err, req, res, next) {
         if (err.name === 'UnauthorizedError') {
             res.status(401).send('You need to login to access this page')

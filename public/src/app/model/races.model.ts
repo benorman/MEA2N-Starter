@@ -10,15 +10,15 @@ export class Races{
     eventType: string;
     hasCompetativeLap: boolean;
     isNonOCREvent: boolean;
-    nonOCREvents: any;
+    nonOCREvents: [{name: string, miles: string, ran: boolean}];
     isMultiLapEvent: boolean;
-    isRelayRace:boolean;
+    isRelayRace: boolean;
     RelayRaceRacers: number;
     image: string;
     website: string;
     active: boolean;
     show: boolean;
     hide: boolean;
-
+    
 
 };

@@ -44,6 +44,7 @@ export class Auth {
 
     public logout() {
         // Remove token from localStorage
+        this.router.navigate([""]);
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('profile');

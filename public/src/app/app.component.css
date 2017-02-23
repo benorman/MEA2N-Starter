@@ -6,7 +6,8 @@
 }
 
 body {
-    background-color: black;
+    background-color: white;
+    box-sizing: content-box;
 }
 
 
@@ -17,4 +18,16 @@ body {
 .profile-btn {
     margin-top: .5em;
     margin-right: 1em;
+}
+
+.navbar {
+
+    margin-left: -15px;
+    margin-right: -15px;
+
+}
+
+a {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 18px;
 }

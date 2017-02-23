@@ -9,3 +9,20 @@
     color: #63A2D8;
 }
 
+.row {
+    padding: .5em;
+}
+
+p{
+    color: lightgray;
+    font-size: 16px;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Black Ops One', cursive;
+}
+
+input, button {
+    font-family: 'Cabin Sketch', cursive;
+}
