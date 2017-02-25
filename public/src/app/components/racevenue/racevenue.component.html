@@ -1,40 +1,41 @@
-<div *ngIf="races">
-    <div class = "white" *ngFor="let race of races">
-   <div class="raceVenue" [ngStyle]="{'height':race.show?'300px':'125px'}">
-       <div class="racePicture">
-           <img class="racelogoPicture" src={{race.image}}>
-       </div>
-       <div class="raceText">
-            <ul >
-                <li><h4 [ngStyle]="{'font-size':race.title.length<22?'18px':'12px'}">{{race.title}}</h4></li>
-                <li><h6>{{race.eventType}}</h6></li>
+<div *ngIf="races" class="container">
+    <div class="row">
+    <div class="white col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let race of races">
+        <div class="raceVenue" [ngStyle]="{'height':race.show?'600px':'125px'}">
+            <div class="racePicture">
+                <img class="racelogoPicture" src={{race.image}}>
+            </div>
+            <div class="raceText">
+                <ul>
+                    <li><h4 [ngStyle]="{'font-size':race.title.length<22?'18px':'12px'}">{{race.title}}</h4></li>
+                    <li><h6>{{race.eventType}}</h6></li>
 
+                </ul>
+            </div>
+            <button (click)="(race.show==false)?race.show=true:race.show=false" class="pull-right btn btn-default"
+                    [ngStyle]="{'margin-top':race.show?'175px':'0px'}">
+                <span *ngIf="race.show" class="glyphicon glyphicon-menu-up"></span>
+                <span *ngIf="!race.show" class="glyphicon glyphicon-menu-down"></span>
+            </button>
+
+
+            <ul *ngIf="race.show" class="align-left raceVenueInfo">
+                <br/><br/><br/>
+                <!--
+                <li>Location: <a href={{race.location}}>Open in Maps</a></li>
+                TODO: make location open in maps for phone and google directions for web -->
+                <li><strong>Address:</strong> <a href='#'>{{race.address}}</a></li>
+                <li *ngIf="!race.isNonOCREvent"><strong>Course Length:</strong> {{race.milesPerLap}} miles</li>
             </ul>
-       </div>
-       <button (click)="(race.show==false)?race.show=true:race.show=false" class="pull-right btn btn-default"
-               [ngStyle]="{'margin-top':race.show?'175px':'0px'}" >
-           <span *ngIf="race.show" class="glyphicon glyphicon-menu-up"></span>
-           <span *ngIf="!race.show" class="glyphicon glyphicon-menu-down"></span>
-       </button>
+            <div *ngIf="race.isNonOCREvent && race.show" class="nonOCREvents">
+                <ul *ngFor="let nonOcrEvent of race.nonOCREvents">
+                    <li><strong>Race: </strong>{{nonOcrEvent.name}}</li>
+                </ul>
+            </div>
+            <laplogger *ngIf="race.show"></laplogger>
 
 
-               <ul  *ngIf="race.show" class="align-left raceVenueInfo">
-                   <br/><br/><br/>
-                   <!--
-                   <li>Location: <a href={{race.location}}>Open in Maps</a></li>
-                   TODO: make location open in maps for phone and google directions for web -->
-                   <li><strong>Address:</strong> <a href='#'>{{race.address}}</a></li>
-                   <li *ngIf="!race.isNonOCREvent"><strong>Course Length:</strong> {{race.milesPerLap}} miles</li>
-                   </ul>
-                   <div *ngIf="race.isNonOCREvent && race.show" class="nonOCREvents">
-                       <ul *ngFor="let nonOcrEvent of race.nonOCREvents">
-                       <li><strong>Race: </strong>{{nonOcrEvent.name}}</li>
-                   </ul></div>
-
-
-
-
-   </div>
+        </div>
+    </div>
 </div>
-
 </div>

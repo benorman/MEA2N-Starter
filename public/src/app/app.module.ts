@@ -13,6 +13,7 @@ import { RacelogComponent } from './components/racelog/racelog.component'
 import { WelcomeComponent } from './components/welcome/welcome.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { RaceVenueComponent } from './components/racevenue/racevenue.component'
+import { LapLoggerComponent} from './components/laplogger/laplogger.component'
 
 
 import { Auth } from './services/auth.service'
@@ -35,7 +36,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       RacelogComponent,
       WelcomeComponent,
       ProfileComponent,
-      
+      LapLoggerComponent
   ],
   imports: [
     BrowserModule,

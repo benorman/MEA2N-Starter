@@ -1,0 +1,17 @@
+.lapcount {
+    text-align: center;
+    max-width: 50px;
+    min-width: 30px;
+    margin-right: 1em;
+   padding: 0;
+}
+
+div {
+    margin: 0 auto;
+
+}
+
+.lapbody {
+
+    box-sizing: content-box;
+}
