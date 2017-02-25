@@ -20,6 +20,7 @@ export class RaceVenueComponent implements OnInit {
    races : any[];
     public width: number;
     public height: number;
+    lapCount: number = 2;
     
     
     constructor(private raceService: GetRaces){
@@ -38,6 +39,11 @@ export class RaceVenueComponent implements OnInit {
         this.getRaces();
     }
 
+
+    countChange(count: number){
+        this.lapCount = count;
+        console.log("Updated Parent Lap Count to " + this.lapCount);
+    }
 
 
 

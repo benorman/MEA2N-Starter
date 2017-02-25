@@ -32,7 +32,9 @@
                     <li><strong>Race: </strong>{{nonOcrEvent.name}}</li>
                 </ul>
             </div>
-            <laplogger *ngIf="race.show"></laplogger>
+            <laplogger *ngIf="race.show" [lapCount]="this.lapCount" (countChange)="countChange($event)"></laplogger>
+
+            <p>Race Venue Lap count is {{this.lapCount}}</p>
 
 
         </div>
