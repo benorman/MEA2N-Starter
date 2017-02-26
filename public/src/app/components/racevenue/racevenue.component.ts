@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-
 import { Races } from '../../model/races.model';
 import { OnInit } from '@angular/core';
-
 import { GetRaces } from '../../services/getraces.service';
 
 
@@ -17,26 +15,86 @@ import { GetRaces } from '../../services/getraces.service';
 
 export class RaceVenueComponent implements OnInit {
 
-   races : any[];
+    races : any[];
+    raceVenues: any[];
     public width: number;
     public height: number;
-    lapCount: number = 2;
+    lapCount: number = 0;
+    nonOCREvent: string;
     
     
     constructor(private raceService: GetRaces){
-
         this.raceService = raceService;
+    }
 
+
+
+    private getRaceVenueTitles():void{
+
+            this.raceService.getRaceVenueTitles().subscribe(
+                response => {
+                    console.log("RACE VENUES ARE: " + response.raceVenues2017);
+                    this.raceVenues = response.raceVenues2017;
+                    
+                },
+                err => {
+                    console.log(err);
+                }
+            )
+        }
+        
+
+    getRaceVenueDetails(id:string): void {
+
+
+
+        this.raceService.getRaceVenueDetails(id).subscribe(
+            response => {
+                console.log(response.raceVenues2017);
+                this.raceVenues = response.raceVenues2017;
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+
+    getRaceVenues(): void {
+
+
+
+        this.raceService.getRaceVenues().subscribe(
+            response => {
+                console.log(response.raceVenues2017);
+                this.raceVenues = response.raceVenues2017;
+
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+
+
+    logNonOCREvent(venue: any, event: string): void {
+
+        this.nonOCREvent = event;
+
+        if(event === "none"){
+            return
+        }else {
+
+            this.raceService.calculateRacePoints(venue, event);
+        }
 
     }
 
-    getRaces(): void {
-        this.races = this.raceService.getRaces();
-        console.log(this.races);
-    }
 
     ngOnInit(): void {
-        this.getRaces();
+        this.getRaceVenues();
     }
 
 

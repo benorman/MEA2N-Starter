@@ -22,7 +22,7 @@ const SPAHTENPROFILESCHEMA = new Schema({
     city:String,
     state:String,
     zip:String,
-    racesCompleted:[{id:String, laps:Number, competitiveLap:Boolean, racePoints:Number}],
+    racesCompleted:[{id:String, laps:Number, event:String, competitiveLap:Boolean, racePoints:Number}],
     racesRun:Number,
     totalPoints:Number,
     image:String

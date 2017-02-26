@@ -99,8 +99,11 @@ module.exports = function (app) {
     //get race venues
     raceRoutes.get('/racevenues', raceController.getRaceVenues);
 
+    //get race venue titles
+    raceRoutes.get('/racevenuetitles', raceController.getRaceVenueTitles);
+
     //get a race venue's information
-    raceRoutes.get('/racevenuedetail/:ID', raceController.getRaceVenueInfo);
+    raceRoutes.get('/racevenuedetails/:ID', raceController.getRaceVenueDetails);
 
     app.get('/', function(req, res){
         console.log("Sending Index File");

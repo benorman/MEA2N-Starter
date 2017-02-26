@@ -1,7 +1,7 @@
 
 
 exports.getRaceVenues = getRaceVenues;
-exports.getRaceVenueInfo = getRaceVenueInfo;
+exports.getRaceVenueDetails = getRaceVenueDetails;
 exports.getRaceVenueTitles = getRaceVenueTitles;
 
 const RaceVenues = require('./datamodel/raceVenue');
@@ -10,13 +10,16 @@ raceVenues = new RaceVenues();
 
 function getRaceVenueTitles(req, res) {
 
-    RaceVenues.find({},'ID title eventType',function (err, raceVenuesReturned) {
+    RaceVenues.find({},'ID title eventType image show',function (err, raceVenuesReturned) {
 
         if (err) {
             console.log("Error reading race venues " + err)
         }
 
         if (raceVenuesReturned) {
+
+            var raceVenuesArray = [];
+
             return res.status(200).send({
                 info: 'Here are the race venue titles for 2017',
                 raceVenues2017: raceVenuesReturned
@@ -50,7 +53,7 @@ function getRaceVenues(req, res) {
 }
 
 
-function getRaceVenueInfo(req, res) {
+function getRaceVenueDetails(req, res) {
     
     var ID = req.params.ID;
     console.log("ID is " + ID);

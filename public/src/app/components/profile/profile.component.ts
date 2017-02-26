@@ -56,6 +56,8 @@ export class ProfileComponent implements OnInit {
     spahtenProfileZip = false;
 
     spahtenProfileNameisEmail = false;
+    
+    eventTest: number;
 
 
 

@@ -7,10 +7,11 @@ export class Spahten {
     city:string = "";
     state:string = "";
     zip:string = "";
-    racesCompleted:{id:string, laps:number, competitiveLap:boolean, racePoints:number}[] = [
+    racesCompleted:{id:string, laps:number, event:string, competitiveLap:boolean, racePoints:number}[] = [
         {
             "id": "",
             "laps": 0,
+            "event": "",
             "competitiveLap": false,
             "racePoints": 0
 
