@@ -84,14 +84,23 @@ export class GetRaces {
         raceComplete.racePoints = this.getPointCountForMiles(parseFloat(ranRace.miles));
 
 
+
+        if (racevenue.isNonOCREvent){
+
+            raceComplete.racePoints = raceComplete.racePoints * .5;
+            if(raceComplete.racePoints > 10){
+                raceComplete.racePoints = 10;
+            }
+
+        }
+
+
         console.log("Constructed Event Object is  " + JSON.stringify(raceComplete));
 
 
 
 
 
-
-        
 
     }
 
