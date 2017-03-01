@@ -110,8 +110,8 @@ module.exports = function (app) {
 
         try {
             //res.sendFile('../public/dist/index.html');
-            
-           res.sendFile('index.html', {root: __dirname + "/public/dist"});
+
+           res.sendFile('index.html', {root: path.join(__dirname, '../public/dist') });
         }catch(error){
             console.log(error);
         }
