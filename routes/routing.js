@@ -109,8 +109,9 @@ module.exports = function (app) {
         console.log("Sending Index File");
 
         try {
-            res.sendFile('../public/dist/index.html');
-           // res.sendFile('index.html', {root: __dirname + "/client"});
+            //res.sendFile('../public/dist/index.html');
+            
+           res.sendFile('index.html', {root: __dirname + "/public/dist"});
         }catch(error){
             console.log(error);
         }
