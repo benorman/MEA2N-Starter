@@ -16,7 +16,7 @@ import {RacesCompleted} from '../model/raceCompleted.model'
 @Injectable()
 export class GetRaces {
 
-    API_URL = 'http://localhost:3000';
+    API_URL = process.env.appURL + ":" + process.env.PORT;
 
 
 

@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class GetSpahtenService {
 
-    API_URL = 'http://localhost:3000';
+    API_URL = process.env.appURL + ":" + process.env.PORT;
     spahtenProfile:Spahten;
 
 
