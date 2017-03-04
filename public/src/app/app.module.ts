@@ -29,6 +29,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule,
+    routing
+
+  ],
   declarations: [
     AppComponent,
       DashboardComponent,
@@ -38,18 +46,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
       ProfileComponent,
       LapLoggerComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-      ReactiveFormsModule,
-      routing
-  
-  ],
+
   providers: [
       appRoutingProviders,
-
-      Auth, 
+      Auth,
       GetRaces,
       GetSpahtenService,
     {
