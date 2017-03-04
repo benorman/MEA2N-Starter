@@ -23,11 +23,14 @@ app.use(logger('dev'))//log request to use API using morgan
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+/*
 function redirectRouterLessonUnmatched(req,res) {
+
     res.sendFile("index.html", {root: path.join(__dirname, '/public/dist')  });
 }
 
 app.use(redirectRouterLessonUnmatched);
+*/
 app.use(express.static(__dirname + '/public/dist'));
 console.log("Directory is " + __dirname + '/public/dist');
 
