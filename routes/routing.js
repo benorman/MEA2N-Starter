@@ -117,9 +117,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('*', function (req, res, next) {
-        res.sendFile('index.html', {root: path.join(__dirname, '/public/dist') });
-    });
+ 
     // set URL for API group routes
     app.use('/api', apiRoutes);
     /*app.use(function (err, req, res, next) {

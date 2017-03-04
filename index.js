@@ -50,7 +50,14 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials')
     next()
-})
+});
+
+
+function redirectRouterLessonUnmatched(req,res) {
+    res.sendFile("index.html", {root: path.join(__dirname, '/public/dist')  });
+}
+
+app.use(redirectRouterLessonUnmatched);
 
 // // catch 404 and forward to error handler
 // app.use(function (req, res, next) {
