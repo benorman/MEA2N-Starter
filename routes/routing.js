@@ -116,12 +116,7 @@ module.exports = function (app) {
             console.log(error);
         }
     });
-
-    app.all('/*', function(req, res, next) {
-        // Just send the index.html for other files to support HTML5Mode
-        res.sendFile('index.html', { root: path.join(__dirname, '/public/dist') });
-    });
-
+    
     // set URL for API group routes
     app.use('/api', apiRoutes);
     /*app.use(function (err, req, res, next) {
