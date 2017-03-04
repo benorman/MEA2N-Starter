@@ -20,8 +20,9 @@ console.log('Your server is running on port ' + config.port + '...')
 
 // setting up basic middleware for all Express requests
 app.use(logger('dev'))//log request to use API using morgan
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '../public/dist'));
 
 //const socketEvents = require('./socketEvents')
 mongoose.connect(config.database,function(err){
