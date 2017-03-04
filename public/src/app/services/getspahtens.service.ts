@@ -17,6 +17,8 @@ export class GetSpahtenService {
     spahtenProfile:Spahten;
 
 
+
+
     constructor(private router: Router, public authHttp: AuthHttp) {
     };
 
@@ -76,6 +78,7 @@ export class GetSpahtenService {
 
     public findSpahten(spahtenProfile:Spahten): Observable<any> {
         console.log("Finding a Spahten hopefully");
+        console.log("API Url is " + this.API_URL);
         
         return this.authHttp.post(`${this.API_URL}/api/core/findspahten`, spahtenProfile)
             .map(response => response.json())
