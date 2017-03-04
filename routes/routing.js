@@ -117,6 +117,10 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/*', function(req, res, next) {
+        res.sendFile('../public/dist/index.html');
+    });
+
 
     // set URL for API group routes
     app.use('/api', apiRoutes);
