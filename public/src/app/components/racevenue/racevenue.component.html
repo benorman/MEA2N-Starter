@@ -1,7 +1,7 @@
 <div *ngIf="raceVenues" class="container">
     <div class="row">
         <div class="white col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let raceVenue of raceVenues">
-            <p> {{raceVenue | json}}</p>
+            <!--<p> {{raceVenue | json}}</p> -->
             <div class="raceVenue" [ngStyle]="{'height':raceVenue.show?'600px':'auto'}">
                 <div class="racePicture">
                     <img class="racelogoPicture" src={{raceVenue.image}}>
@@ -23,12 +23,12 @@
                 </div>
                 <div *ngIf="raceVenue.show" class="container">
                     <ul class="align-left raceVenueInfo row">
-                        <br/><br/><br/>
+                        <br/>
                         <!--
                         <li>Location: <a href={{race.location}}>Open in Maps</a></li>
                         TODO: make location open in maps for phone and google directions for web -->
                         <li><p><strong>Race Description:</strong></p>
-                            <br/> This is an {{raceVenue.eventType}}
+                           This is an {{raceVenue.eventType}}
                             <span *ngIf="raceVenue.isMultiLapEvent"> with multiple laps</span>
                             <span *ngIf="raceVenue.hasCompetativeLap">
                                 <span *ngIf="raceVenue.isMultiLapEvent"> and also</span>
@@ -36,9 +36,9 @@
                                 has a competitive lap. </span>
                         </li>
                         <br/>
-                        <li><a target="_blank" href='{{raceVenue.website}}'>{{raceVenue.title}}'s Website</a></li>
+                        <li><strong>Visit Them: </strong><a target="_blank" href='{{raceVenue.website}}'>{{raceVenue.title}}'s Website</a></li>
                         <br/>
-                        <li><strong>Address:</strong><br/> <a href='#'>{{raceVenue.address}}</a></li>
+                        <li><strong>Address: </strong> <a href='#'>{{raceVenue.address}}</a></li>
                         <br/>
                         <li *ngIf="!raceVenue.isNonOCREvent"><strong>Course Length:</strong> {{raceVenue.milesPerLap}}
                             miles

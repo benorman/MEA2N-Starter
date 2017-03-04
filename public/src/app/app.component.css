@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #63A2D8;
     box-sizing: content-box;
 }
 
@@ -24,10 +24,21 @@ body {
 
     margin-left: -15px;
     margin-right: -15px;
+    background-image: -webkit-linear-gradient(#242424, #161616 60%, black);
+    background-image: -o-linear-gradient(#242424, #161616 60%, black);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), color-stop(60%, #161616), to(black));
+    background-image: linear-gradient(#242424, #161616 60%, black);
 
 }
 
 a {
     font-family: 'Cabin Sketch', cursive;
     font-size: 18px;
+}
+
+.navbtn {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    margin-left: 1em;
 }

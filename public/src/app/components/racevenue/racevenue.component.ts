@@ -68,7 +68,7 @@ export class RaceVenueComponent implements OnInit {
         this.raceService.getRaceVenues().subscribe(
             response => {
                 console.log(response.raceVenues2017);
-                this.raceVenues = response.raceVenues2017;
+                this.raceVenues = this.sortByKey(response.raceVenues2017, "ID");
 
             },
             err => {
@@ -94,7 +94,7 @@ export class RaceVenueComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.getRaceVenues();
+       this.getRaceVenues();
     }
 
 
@@ -103,6 +103,11 @@ export class RaceVenueComponent implements OnInit {
         console.log("Updated Parent Lap Count to " + this.lapCount);
     }
 
-
+    sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
 
 }

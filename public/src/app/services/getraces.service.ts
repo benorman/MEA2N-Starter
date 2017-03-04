@@ -42,6 +42,7 @@ export class GetRaces {
     public getRaceVenues(): Observable<any> {
         console.log("Getting Race Venues");
 
+       // return this.authHttp.get(`http://localhost:3000/api/race/racevenues`)
         return this.authHttp.get(`/api/race/racevenues`)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
