@@ -30,7 +30,7 @@ export class GetRaces {
     public getRaceVenueTitles(): Observable<any> {
         console.log("Getting Race Venue Titles");
 
-        return this.authHttp.get(`${this.API_URL}/api/race/racevenuetitles`)
+        return this.authHttp.get(`/api/race/racevenuetitles`)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
             );
@@ -42,7 +42,7 @@ export class GetRaces {
     public getRaceVenues(): Observable<any> {
         console.log("Getting Race Venues");
 
-        return this.authHttp.get(`${this.API_URL}/api/race/racevenues`)
+        return this.authHttp.get(`/api/race/racevenues`)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
             );
@@ -52,9 +52,9 @@ export class GetRaces {
 
 
     public getRaceVenueDetails(id:string): Observable<any> {
-        console.log("Creating a Spahten Profile!!");
+        console.log("Getting Race Venue Details");
 
-        return this.authHttp.get(`${this.API_URL}/api/race/racevenuedetails/`+id)
+        return this.authHttp.get(`/api/race/racevenuedetails/`+id)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
             );

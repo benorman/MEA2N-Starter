@@ -36,7 +36,7 @@ export class GetSpahtenService {
     public createSpahten(spahtenProfile:Spahten): Observable<any> {
         console.log("Creating a Spahten Profile!!");
 
-        return this.authHttp.post(`${this.API_URL}/api/core/spahten`, spahtenProfile)
+        return this.authHttp.post(`/api/core/spahten`, spahtenProfile)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
 
@@ -78,9 +78,10 @@ export class GetSpahtenService {
 
     public findSpahten(spahtenProfile:Spahten): Observable<any> {
         console.log("Finding a Spahten hopefully");
-        console.log("API Url is " + this.API_URL);
+
+
         
-        return this.authHttp.post(`${this.API_URL}/api/core/findspahten`, spahtenProfile)
+        return this.authHttp.post(`/api/core/findspahten`, spahtenProfile)
             .map(response => response.json())
             .catch((error:any) => Observable.throw(error || 'Server error')
            
